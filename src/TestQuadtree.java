@@ -1,7 +1,7 @@
 import java.io.*;
 import java.awt.Color ;
 import java.util.ArrayList;
-class main{
+public class TestQuadtree{
 public static void main(String [] args){
   ArrayList<Point> listepoints = new ArrayList<>();
   try (BufferedReader br = new BufferedReader(new FileReader("fich.txt"))) {
@@ -47,8 +47,8 @@ public static void main(String [] args){
       //premiere image
        int n = (int) imageSize;
        Image image = new Image(n, n);
-       node.toImage(image, "file1", n, epaisseur);   
-      node.toText("file.txt");
+       node.toImage(image, "imge_de_base.txt", n, epaisseur);   
+       node.toText("couleur_de_base.txt");
       // Lire le nombre de recoloriages
       int nbRecoloriages = Integer.parseInt(br.readLine().trim());
       ArrayList<String> recolors = new ArrayList<>();
@@ -82,7 +82,7 @@ public static void main(String [] args){
             node.toText("filecolor.txt");
          }
 
-        // Générer l'image finale
+        // Générer l'image finale.
          node.toImage(image, "fileRecolor", n, epaisseur);
          //node.compressQTree();
          node.toImage(image,"fileCompress",n,epaisseur); 
@@ -93,4 +93,3 @@ public static void main(String [] args){
         }
 }
 }
-

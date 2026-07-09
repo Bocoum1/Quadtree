@@ -18,11 +18,12 @@ Le projet manipule une image comme une partition récursive de rectangles. Chaqu
 
 ```text
 .
-├── Image.java       # Création et sauvegarde d'images PNG
-├── Point.java       # Coordonnées et gestion des couleurs
-├── Quadtree.java    # Structure de l'arbre et opérations principales
-├── main.java        # Programme principal de démonstration
-├── test.java        # Variante de test du programme principal
+├── src/
+│   ├── Image.java          # Création et sauvegarde d'images PNG
+│   ├── Point.java          # Coordonnées et gestion des couleurs
+│   ├── Quadtree.java       # Structure de l'arbre et opérations principales
+│   ├── Main.java           # Programme principal de démonstration
+│   └── TestQuadtree.java   # Variante de test du programme principal
 ├── file1            # Image générée initiale
 ├── fileRecolor      # Image générée après recoloriage
 ├── fileCompress     # Image générée après compression
@@ -58,10 +59,10 @@ Les couleurs sont représentées par des lettres :
 Compiler le cœur Java :
 
 ```bash
-javac Image.java Point.java Quadtree.java main.java
+javac -d out src/*.java
 ```
 
-Ne pas lancer directement `javac *.java` pour l'instant : `main.java` et `test.java` définissent tous les deux une classe `main`, ce qui crée un conflit de compilation.
+Les deux points d'entrée ont maintenant des noms distincts (`Main` et `TestQuadtree`), ce qui évite le conflit de classe qui existait auparavant.
 
 ## Exécution
 
@@ -83,7 +84,7 @@ x,y,nouvelle_couleur
 Puis lancer :
 
 ```bash
-java main
+java -cp out Main
 ```
 
 Le programme génère notamment :
@@ -96,20 +97,25 @@ Le programme génère notamment :
 ## Exemple de workflow
 
 ```bash
-javac Image.java Point.java Quadtree.java main.java
-java main
+javac -d out src/*.java
+java -cp out Main
+```
+
+La variante de test peut être lancée avec :
+
+```bash
+java -cp out TestQuadtree
 ```
 
 Les fichiers `file1`, `fileRecolor` et `fileCompress` sont des images PNG générées par le programme. Ils peuvent être ouverts comme images même s'ils n'ont pas encore l'extension `.png`.
 
 ## Notes
 
-Ce projet met surtout l'accent sur la compréhension de la structure quadtree et des opérations récursives associées. Une prochaine passe pourrait séparer plus clairement les fichiers Java, les fichiers de démonstration et les exercices Julia annexes.
+Ce projet met surtout l'accent sur la compréhension de la structure quadtree et des opérations récursives associées. La partie Java est désormais regroupée dans `src/`; les fichiers Julia du dépôt restent des exercices annexes.
 
 ## Prochaines améliorations
 
 - Renommer les images générées avec l'extension `.png`.
 - Ajouter un fichier `fich.txt` d'exemple documenté.
-- Séparer `main.java` et `test.java` pour éviter le conflit de classe `main`.
 - Ajouter une petite galerie de résultats dans le README.
-- Organiser le code Java dans un dossier `src/`.
+- Ajouter des tests unitaires simples sur la division, la recherche et la compression.

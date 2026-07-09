@@ -1,5 +1,6 @@
 *.class
 *.log
+out/
 
 # Sorties générées localement
 file.txt
