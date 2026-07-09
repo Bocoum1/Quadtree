@@ -1,0 +1,12 @@
+*.class
+*.log
+
+# Sorties générées localement
+file.txt
+couleur_de_base.txt
+imge_de_base.txt
+
+# Fichiers système / IDE
+.DS_Store
+.vscode/
+.idea/
