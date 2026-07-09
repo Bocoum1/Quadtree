@@ -3,9 +3,14 @@
 out/
 
 # Sorties générées localement
-file.txt
-couleur_de_base.txt
-imge_de_base.txt
+/fich.txt
+/file.txt
+/filecolor.txt
+/file1.png
+/fileRecolor.png
+/fileCompress.png
+/couleur_de_base.txt
+/imge_de_base.txt
 
 # Fichiers système / IDE
 .DS_Store

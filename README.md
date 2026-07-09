@@ -24,10 +24,12 @@ Le projet manipule une image comme une partition récursive de rectangles. Chaqu
 │   ├── Quadtree.java       # Structure de l'arbre et opérations principales
 │   ├── Main.java           # Programme principal de démonstration
 │   └── TestQuadtree.java   # Variante de test du programme principal
-├── file1            # Image générée initiale
-├── fileRecolor      # Image générée après recoloriage
-├── fileCompress     # Image générée après compression
-└── filecolor.txt    # Représentation textuelle générée
+└── examples/
+    ├── fich.txt             # Exemple d'entrée reproductible
+    ├── initial.png          # Image initiale générée
+    ├── recolored.png        # Image après recoloriage
+    ├── compressed.png       # Image après compression
+    └── recolored-tree.txt   # Représentation textuelle générée
 ```
 
 Le dépôt contient aussi des fichiers Julia (`*.jl`) correspondant à des exercices annexes. Le cœur du projet Quadtree est la partie Java.
@@ -66,7 +68,7 @@ Les deux points d'entrée ont maintenant des noms distincts (`Main` et `TestQuad
 
 ## Exécution
 
-Le programme principal lit un fichier d'entrée appelé `fich.txt`.
+Le programme principal lit `fich.txt` par défaut. Il peut aussi recevoir un chemin de fichier en argument, ce qui permet de lancer directement l'exemple fourni.
 
 Format attendu :
 
@@ -81,33 +83,34 @@ x,y,nouvelle_couleur
 ...
 ```
 
-Puis lancer :
+Puis lancer avec l'exemple du dépôt :
 
 ```bash
-java -cp out Main
+java -cp out Main examples/fich.txt
 ```
 
 Le programme génère notamment :
 
-- une première image issue du quadtree
-- une représentation textuelle de l'arbre
-- une image après recoloriage
-- une image après compression
+- `file1.png` : première image issue du quadtree
+- `file.txt` : représentation textuelle de l'arbre initial
+- `fileRecolor.png` : image après recoloriage
+- `filecolor.txt` : représentation textuelle après recoloriage
+- `fileCompress.png` : image après compression
 
 ## Exemple de workflow
 
 ```bash
 javac -d out src/*.java
-java -cp out Main
+java -cp out Main examples/fich.txt
 ```
 
 La variante de test peut être lancée avec :
 
 ```bash
-java -cp out TestQuadtree
+java -cp out TestQuadtree examples/fich.txt
 ```
 
-Les fichiers `file1`, `fileRecolor` et `fileCompress` sont des images PNG générées par le programme. Ils peuvent être ouverts comme images même s'ils n'ont pas encore l'extension `.png`.
+Les fichiers dans `examples/` documentent un résultat reproductible. Les fichiers générés à la racine lors d'une exécution locale sont ignorés par Git.
 
 ## Notes
 
@@ -115,7 +118,5 @@ Ce projet met surtout l'accent sur la compréhension de la structure quadtree et
 
 ## Prochaines améliorations
 
-- Renommer les images générées avec l'extension `.png`.
-- Ajouter un fichier `fich.txt` d'exemple documenté.
 - Ajouter une petite galerie de résultats dans le README.
 - Ajouter des tests unitaires simples sur la division, la recherche et la compression.

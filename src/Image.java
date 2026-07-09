@@ -49,6 +49,10 @@ public class Image
   public void save(String filename) throws IOException {
     File fic = new File(filename);
     fic = new File(fic.getAbsolutePath());
+    File parent = fic.getParentFile();
+    if (parent != null) {
+      parent.mkdirs();
+    }
     ImageIO.write(image,"png",fic);
   }
 
@@ -66,5 +70,4 @@ public class Image
     return image.getHeight();
   }
 }
-
 

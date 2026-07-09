@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.awt.Color;
-import java.util.Scanner;
 
 public class Quadtree{ 
     private Quadtree parent;
@@ -74,9 +73,6 @@ public class Quadtree{
         if (this==null || divisible()) {
             return this;
         }
-        else if (!isLeaf() && p.getX() >= this.xmin && p.getX() <= this.xmax && p.getX()>= this.ymin && p.getY()<=this.ymax){
-            System.out.println("p");
-        }
 
         // Vérifier les quadrants
         if (p.getX() < nordouest.Xmax() && p.getY() >= nordouest.Ymin()) {
@@ -141,9 +137,11 @@ public class Quadtree{
                 if (sudouest != null) sudouest.toImage(img, filePath, imageSize,eps);      
                 if (sudest != null) sudest.toImage(img, filePath, imageSize,eps);
             }
-            try { 
-            img.save(filePath);
-            } catch(IOException e){ System.err.println( e.getMessage());
+            if (parent == null) {
+                try {
+                img.save(filePath);
+                } catch(IOException e){ System.err.println( e.getMessage());
+                }
             }
     }
 

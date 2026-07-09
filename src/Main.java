@@ -3,8 +3,9 @@ import java.awt.Color ;
 import java.util.ArrayList;
 public class Main{
 public static void main(String [] args){
+  String inputFile = args.length > 0 ? args[0] : "fich.txt";
   ArrayList<Point> listepoints = new ArrayList<>();
-  try (BufferedReader br = new BufferedReader(new FileReader("fich.txt"))) {
+  try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
    //la taille de l'image
   double imageSize = Double.parseDouble(br.readLine().trim());
    Quadtree node = new Quadtree(0, 0, imageSize, imageSize, null,null);
@@ -29,10 +30,10 @@ public static void main(String [] args){
           double x = Double.parseDouble(chaine[0].trim());
           double y = Double.parseDouble(chaine[1].trim());
           ArrayList<String> colors = new ArrayList<>();
-          colors.add(chaine[2]); // Couleur NO
-           colors.add(chaine[3]); // Couleur NE
-           colors.add(chaine[4]); // Couleur SO
-           colors.add(chaine[5]); // Couleur SE
+          colors.add(chaine[2].trim().toUpperCase()); // Couleur NO
+           colors.add(chaine[3].trim().toUpperCase()); // Couleur NE
+           colors.add(chaine[4].trim().toUpperCase()); // Couleur SO
+           colors.add(chaine[5].trim().toUpperCase()); // Couleur SE
            
              Point p = new Point(x, y, colors);
              listepoints.add(p);
@@ -47,7 +48,7 @@ public static void main(String [] args){
       //premiere image
        int n = (int) imageSize;
        Image image = new Image(n, n);
-       node.toImage(image, "file1", n, epaisseur);   
+       node.toImage(image, "file1.png", n, epaisseur);
       node.toText("file.txt");
       // Lire le nombre de recoloriages
       int nbRecoloriages = Integer.parseInt(br.readLine().trim());
@@ -83,9 +84,9 @@ public static void main(String [] args){
          }
 
         // Générer l'image finale
-         node.toImage(image, "fileRecolor", n, epaisseur);
+         node.toImage(image, "fileRecolor.png", n, epaisseur);
          //node.compressQTree();
-         node.toImage(image,"fileCompress",n,epaisseur); 
+         node.toImage(image,"fileCompress.png",n,epaisseur);
         } catch (IOException e) {
             System.out.println("Erreur lors de la lecture du fichier : " + e.getMessage());
         } catch (NumberFormatException e) {
